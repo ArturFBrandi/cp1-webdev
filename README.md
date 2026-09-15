@@ -7,7 +7,7 @@ MVP de "novo TV Time" focado em **perfil, estatísticas e gamificação** para q
 ## Integrantes
 
 - Artur Fabi Brandi RM570258
-- Victor Bertacchini De Godoy RM571452
+- Victor Bertacchini De Godoy RM571454
 - Victor Lula Heineken Rodrigues RM570782
 
 ## Problema
