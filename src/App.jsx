@@ -5,6 +5,7 @@ import { Detalhes } from "./pages/Detalhes";
 import { Perfil } from "./pages/Perfil";
 import { Estatisticas } from "./pages/Estatisticas";
 import { Conquistas } from "./pages/Conquistas";
+import { NotFound } from "./pages/NotFound";
 
 export default function App() {
   return (
@@ -16,6 +17,9 @@ export default function App() {
           <Route path="perfil" element={<Perfil />} />
           <Route path="estatisticas" element={<Estatisticas />} />
           <Route path="conquistas" element={<Conquistas />} />
+
+          {/* Rota de fallback para URLs inexistentes */}
+          <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
     </BrowserRouter>

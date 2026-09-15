@@ -1,5 +1,11 @@
 import { NavLink } from "react-router-dom";
-import { FiCompass, FiUser, FiBarChart2, FiAward, FiFilm } from "react-icons/fi";
+import {
+  FiCompass,
+  FiUser,
+  FiBarChart2,
+  FiAward,
+  FiFilm,
+} from "react-icons/fi";
 import "./Navbar.css";
 
 const LINKS = [
@@ -13,19 +19,27 @@ export function Navbar() {
   return (
     <header className="navbar">
       <div className="container navbar-inner">
-        <NavLink to="/" className="navbar-brand">
-          <FiFilm size={22} />
+        <NavLink
+          to="/"
+          className="navbar-brand"
+          aria-label="Watchly - Ir para a página inicial"
+        >
+          <FiFilm size={22} aria-hidden="true" />
           <span>Watchly</span>
         </NavLink>
-        <nav className="navbar-links">
+
+        <nav className="navbar-links" aria-label="Navegação principal">
           {LINKS.map(({ to, label, icon: Icon, end }) => (
             <NavLink
               key={to}
               to={to}
               end={end}
-              className={({ isActive }) => `navbar-link${isActive ? " active" : ""}`}
+              aria-label={label}
+              className={({ isActive }) =>
+                `navbar-link${isActive ? " active" : ""}`
+              }
             >
-              <Icon size={18} />
+              <Icon size={18} aria-hidden="true" />
               <span>{label}</span>
             </NavLink>
           ))}
