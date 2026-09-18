@@ -11,12 +11,6 @@ import "./Perfil.css";
 
 /**
  * Calcula uma data aproximada de desbloqueio para cada conquista.
- *
- * Como o projeto atualmente salva a data em que o título foi marcado como
- * assistido (`assistidoEm`), mas não salva uma data específica para o momento
- * em que uma avaliação foi feita, usamos a evolução cronológica da lista de
- * assistidos para descobrir em qual ponto cada conquista passou a ser
- * desbloqueada.
  */
 function getAchievementsWithUnlockDate(watchedList) {
   const orderedList = [...watchedList].sort((a, b) => {
@@ -108,6 +102,10 @@ export function Perfil() {
     }));
   }
 
+  // Busca o objeto do avatar selecionado atualmente
+  const currentAvatarObj =
+    avatarOptions.find((opt) => opt.id === profile.avatarId) || avatarOptions[0];
+
   return (
     <div>
       <h1 className="page-title">Perfil</h1>
@@ -118,24 +116,29 @@ export function Perfil() {
 
       <div className="perfil-header">
         <div className="perfil-avatar-picker">
-          <span className="perfil-avatar">{profile.avatar}</span>
+          {/* Avatar Selecionado em Destaque */}
+          <div className="perfil-avatar" style={{ display: "flex", alignItems: "center", justifyContent: "center" }}>
+            {currentAvatarObj.icon}
+          </div>
 
+          {/* Opções de Seleção */}
           <div className="perfil-avatar-options">
-            {avatarOptions.map((avatar) => (
+            {avatarOptions.map((item) => (
               <button
-                key={avatar}
+                key={item.id}
                 type="button"
-                className={avatar === profile.avatar ? "active" : ""}
+                className={item.id === profile.avatarId ? "active" : ""}
                 onClick={() =>
                   setProfile((current) => ({
                     ...current,
-                    avatar,
+                    avatarId: item.id,
                   }))
                 }
-                aria-label={`Selecionar avatar ${avatar}`}
-                aria-pressed={avatar === profile.avatar}
+                aria-label={`Selecionar avatar ${item.id}`}
+                aria-pressed={item.id === profile.avatarId}
+                style={{ display: "flex", alignItems: "center", justifyContent: "center" }}
               >
-                {avatar}
+                {item.icon}
               </button>
             ))}
           </div>
